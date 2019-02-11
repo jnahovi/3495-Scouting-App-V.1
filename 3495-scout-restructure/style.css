@@ -1,0 +1,435 @@
+body {
+	background-color: #f4f4f4;
+	color: #555;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	line-height: 1.6em;
+	margin:0;
+}
+
+
+.container{
+	width: 80%;
+	margin: auto;
+	overflow: hidden;
+
+
+}
+
+#mainHeader {
+	background-color: coral;
+	color: #fff;
+}
+
+#showcase {
+	background-color: black;
+	background-image:url("https://mindcraft-scouting-app.firebaseapp.com/bannerbest2.png");
+	background-position: 0px;
+	height: 400px;
+	margin-bottom: 30px;
+	text-align: center;
+	background-repeat: no-repeat;
+
+
+}
+
+
+#login {
+
+	float:left;
+	width: 70%;
+	padding: 0 40px;
+	box-sizing: border-box;
+	animation: fromleft;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	position: relative;
+
+}
+
+@keyframes fromleft {
+	0% {left: -200px;}
+	100% {left: 30px;}
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeout {
+	from { opacity: 1; }
+	to { opacity: 0; }
+
+}
+
+
+.sidebar {
+	float: right;
+	width: 30%;
+	box-sizing: border-box;
+	padding: 10px;
+	animation: fromright;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	position: relative;
+
+}
+
+@keyframes fromright {
+	0% {right: -50%;}
+	100% {right: -5%;}
+}
+
+#login button {
+
+	background: coral;
+    color: #fff;
+    border: 1px solid coral;
+    border-radius: 10px;
+    padding: 15px;
+    display: block;
+    width: 35%;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transform: 0.3s;
+}
+
+
+#login input{
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    padding: 15px;
+    outline: none;
+    width: 55%;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transform: 0.3s;
+
+}
+
+#login button:hover {
+	background: #fff;
+    color: grey;
+    border: 2px solid coral;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+	#login {
+		width: 100%;
+		padding-bottom: 30px;
+	}
+	#login button {
+		width: 70%;
+	}
+
+	#login input {
+		width: 70%;
+	}
+	.sidebar {
+		width: 100%;
+	}
+	#showcase {
+		width: 100%;
+		height: 250px;
+		background-position: 5px;
+		text-align: center;
+		background-repeat: no-repeat;
+	}
+}
+
+
+.input{
+	width: 80%;
+	margin: auto;
+	overflow: hidden;
+
+
+}
+
+#log-team button {
+
+	background: coral;
+    color: #fff;
+    border: 1px solid coral;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 5px;
+    display: block;
+    width: 35%;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transform: 0.3s;
+
+}
+
+#log-team button:hover {
+	background: #fff;
+    color: grey;
+    border: 2px solid coral;
+    cursor: pointer;
+
+}
+
+#log-team input{
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fff;
+    padding: 15px;
+    outline: none;
+    width: 55%;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transform: 0.3s;
+
+}
+
+#log-team{
+
+	float:left;
+	width: 70%;
+	padding: 0 40px;
+	box-sizing: border-box;
+	animation: fromleft;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	position: relative;
+
+}
+
+#log-team button, .chungus {
+	animation: fadein;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	position: relative; 
+   
+}
+
+
+
+@media screen and (max-width: 600px) {
+	#log-team {
+		width: 100%;
+		padding-bottom: 30px;
+	}
+	#log-team button {
+		width: 70%;
+	}
+
+	#log-team input {
+		width: 70%;
+	}
+
+	#submitTheShit button {
+		width: 80%;
+	}
+
+}
+
+
+.mainpage{
+	width: 80%;
+	margin: auto;
+	overflow: hidden;
+
+
+}
+
+#hatch-log {
+
+	float:left;
+	width: 40%;
+	padding: 0 40px;
+	box-sizing: border-box;
+	border: 3px solid black;
+	border-radius: 10px;
+	animation: fadein;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	position: relative;
+
+}
+
+#cargo-log {
+
+	float:right;
+	width: 40%;
+	padding: 0 40px;
+	box-sizing: border-box;
+	border: 3px solid black;
+	border-radius: 10px;
+	animation: fadein;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	position: relative;
+	margin-bottom: 10px;
+
+}
+
+.regular-checkbox {
+	-webkit-appearance: none;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 5px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+
+.regular-checkbox:active, .regular-checkbox:checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.regular-checkbox:checked {
+	background-color: coral;
+	border: 1px solid black;
+	box-shadow: 0 1px 2px coral, inset 0px -15px 10px -12px coral, inset 15px 10px -12px coral;
+	color: coral;
+}
+
+.regular-checkbox:checked:after {
+	content: '\2714';
+	font-size: 16px;
+	position: absolute;
+	top: -10px;
+	left: 0px;
+	color: black;
+}
+
+
+
+@media screen and (max-width: 600px) {
+	#hatch-log {
+		width: 100%;
+		margin-bottom: 30px;
+	}
+
+	#cargo-log {
+		width: 100%;
+	}
+
+	#submitTheShit button {
+		width: 80%;
+	}
+
+	#thankYou button{
+		width: 80%;
+	}
+
+	#thankYou p {
+		width: 80%;
+	}
+
+}
+
+.fuckingKillMe {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    padding: 15px;
+    outline: none;
+    width: 50%;
+    margin-bottom: 10px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transform: 0.3s;
+    margin: auto;
+
+}
+
+#submitTheShit button {
+	float: middle;
+	background: coral;
+    color: #fff;
+    border: 1px solid coral;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 5px;
+    margin-left: 30px;
+    display: block;
+    width: 80%;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transform: 0.3s;
+
+
+}
+
+
+#submitTheShit button:hover {
+	background: #fff;
+    color: grey;
+    border: 2px solid coral;
+    cursor: pointer;
+
+}
+
+#submitTheShit button, .submission {
+	animation: fadein;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	position: relative; 
+   
+}
+
+#thankYou button {
+
+	background: coral;
+    color: #fff;
+    border: 1px solid coral;
+    border-radius: 10px;
+    padding: 15px;
+    display: block;
+    width: 35%;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transform: 0.3s;
+}
+
+#thankYou button:hover {
+	background: #fff;
+    color: grey;
+    border: 2px solid coral;
+    cursor: pointer;
+
+}
+
+#thankYou {
+	animation: fromleft;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	position: relative; 
+}
+
+@media screen and (max-width: 600px) {
+
+	#thankYou button{
+		width: 80%;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

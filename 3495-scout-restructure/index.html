@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA1zmfvi7S-46UHSsnxqk7LNhXVg6KV6kI",
+    authDomain: "mindcraft-scouting-app.firebaseapp.com",
+    databaseURL: "https://mindcraft-scouting-app.firebaseio.com",
+    projectId: "mindcraft-scouting-app",
+    storageBucket: "mindcraft-scouting-app.appspot.com",
+    messagingSenderId: "86478970050"
+  };
+  
+  firebase.initializeApp(config);
+
+</script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mindcraft Robotics Scouting App</title>
+    <link rel = "stylesheet" type = "text/css" href = "style.css">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.8.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.8.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.8.2/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.8.2/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.8.2/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+
+  </head>
+  <body>
+
+        <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          
+  
+        }
+      });
+    </script>
+
+
+
+    <header id = "mainHeader"> 
+        <div class = container> 
+          <h1> Mindcraft Robotics Scouting App </h1>
+        </div>
+    </header>
+
+    <section id = "showcase">
+      <div class = container>
+    
+      </div>
+    </section>
+     
+     <div class = container id = firstfields>
+        <section id = "login">
+     
+          <h1> Login To The App </h1>
+          <input type = "email" placeholder = "Email..." id="email_field" />
+          <input type = "password" placeholder = "Password..." id="password_field" />
+            
+          <button onclick="login()">
+            Login to Account
+          </button>
+
+          
+        </section>
+
+        <aside class = sidebar>
+            <p> This is the 3495 Scouting App, updated for 2019. This is the first release of our web app! This app was created with the purpose of scouting, specifically to figure out what other teams' bots can do. This is a new endevour for our programming team, and thus, there could be unknown bugs that exist in the app. If you uncover a bug, please contact me at nahoulee2003@gmail.com
+            </p>
+        </aside>
+        
+    </div>
+
+
+
+    <div class = input id = secondfields>
+      <section id = "log-team">
+        <h1> Please Log Your Team and Match </h1>
+        <input type = "number" placeholder = "Team..." id= "teamNumber" />
+        <input type ="number" placeholder = "Match Number..." id = "matchNumber"/>
+        <button onclick = "benShapiroCOLLECTSDataWITHFactsANDLogic()" id = "submit"> Submit Background Information </button>
+        <button class = chungus onclick = "continueToMain()" id = "continue"> Continue To App </button>
+        <button onclick="logout()">
+            Log Out
+        </button>
+      </section>
+
+
+      <aside class = sidebar>
+        <p> Here is the background info submission. Here, please type the team number (of the team you are scouting), along with the match they are found in. If you cannot remember the match number, either check The Blue Alliance or leave the field blank (we can fill the remaining information manually).
+        </p>
+      </aside>
+    </div>
+
+
+  <div class = mainpage id = thirdfield>
+    <section id = "hatch-log">
+      <h1> Hatch Abilities </h1>
+      <br>
+      <input class = regular-checkbox type = "checkbox" id = "canPlaceHatch" onclick = "addBotSkills()"> Check if team can place hatches </input>
+    </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "hatchFirstLvl" onclick = "addBotSkills()"> Check if team can place hatch on 1st Level (Rocket) </input>
+    </br> <br>
+      <input class = regular-checkbox  type = "checkbox" id = "hatchSecondLvl" onclick = "addBotSkills()"> Check if team can place hatch on 2nd Level (Rocket) </input>
+      </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "hatchThirdLvl" onclick = "addBotSkills()"> Check if team can place hatch on 3rd Level (Rocket) </input>
+      </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "hatchStatPickup" onclick = "addBotSkills()"> Check if team can pick up hatch from human player </input>
+      </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "hatchGroundPickup" onclick = "addBotSkills()"> Check if the team can pick up hatch from ground </input>
+    </br> <br>
+      <input class = fuckingKillMe type = number placeholder = "Hatch Number..." id = "totalHatch"/>
+    </br>
+
+  </section>
+
+    <section id = "cargo-log">
+      <h1> Cargo Abilities </h1>
+      <br>
+      <input class = regular-checkbox type = "checkbox" id = "canPlaceCargo" onclick = "addBotSkills()"> Check if team can place cargo </input>
+    </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "cargoFirstLvl" onclick = "addBotSkills()"> Check if team can place cargo on 1st Level (Rocket) </input>
+    </br> <br>
+      <input class = regular-checkbox  type = "checkbox" id ="cargoSecondLvl" onclick = "addBotSkills()"> Check if team can place cargo on 2nd Level (Rocket) </input>
+      </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "cargoThirdLvl" onclick = "addBotSkills()"> Check if team can place cargo on 3rd Level (Rocket) </input>
+      </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "cargoStatPickup" onclick = "addBotSkills()"> Check if team can pick up cargo from human player </input>
+      </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "cargoGroundPickup" onclick = "addBotSkills()"> Check if the team can pick up cargo from ground </input>
+    </br> <br>
+
+      <input class = fuckingKillMe type = number placeholder = "Cargo Number..." id = "totalCargo"/>
+    </br>
+  </section>
+
+
+  <section id = "submitTheShit">
+    <button class = submission id = submitAllTheShit onclick="submitAllTheNumbers()"> Submit Data </button>
+    <button class = signoutdeeznuts id = signout onclick = "continueToSignOut()"> Sign Name & Sign Out </button>
+  </section>
+
+</div>
+
+<div class = avengers id = fourthfield>
+  <section id = thankYou>
+    <h1> Thank You For Your Data Submission </h1>
+    <p> Thank you for scouting. This data will be used to gather knowledge on the abilities of other teams' bots. This will all be helpful when we are paired randomly with other teams, as we know what they are able to do without having to ask too many extra questions. </p>
+    <button id = backbutton onclick = "backFromSignOut()"> Go Back To Login</button>
+  </section>
+</div>
+
+
+
+    <script src = "app.js"> </script>
+
+
+
+
+
+  </body>
+</html>
