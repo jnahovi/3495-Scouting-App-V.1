@@ -488,7 +488,6 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
         var newObjectTeam = data.val();
         var para = document.createTextNode(newObjectTeam.Team);
         window.para = document.createTextNode(newObjectTeam.Team);
-        console.log(newObjectTeam.Team);
         window.new_team.appendChild(para);
         new_team.onclick = function(){window.alert(newObjectTeam.Abilities)};
       });
