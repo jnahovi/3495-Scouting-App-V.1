@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+
 <html>
   <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
 <script>
   // Initialize Firebase
@@ -73,6 +74,11 @@
     
       </div>
     </section>
+
+    <ul id = "navigation">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="botIndex.html">Index</a></li>
+    </ul>
      
      <div class = container id = firstfields>
         <section id = "login">
@@ -138,7 +144,7 @@
 
   </section>
 
-    <section id = "cargo-log">
+  <section id = "cargo-log">
       <h1> Cargo Abilities </h1>
       <br>
       <input class = regular-checkbox type = "checkbox" id = "canPlaceCargo" onclick = "addBotSkills()"> Check if team can place cargo </input>
@@ -158,6 +164,19 @@
     </br>
   </section>
 
+    <section id = "climb-log">
+      
+      <h1> Climbing Abilities </h1>
+    <br>
+      <input class = regular-checkbox type = "checkbox" id = "canClimbFirst" onclick = "addBotSkills()"> Check if team can climb the first level (Hab) </input>
+    </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "canClimbSecond" onclick = "addBotSkills()"> Check if the team can climb the second level (Hab)</input>
+    </br> <br>
+      <input class = regular-checkbox  type = "checkbox" id ="canClimbThird" onclick = "addBotSkills()"> Check if team can climb the third level (Hab) </input>
+    </br> 
+
+  </section>
+
 
   <section id = "submitTheShit">
     <button class = submission id = submitAllTheShit onclick="submitAllTheNumbers()"> Submit Data </button>
@@ -172,6 +191,13 @@
     <p> Thank you for scouting. This data will be used to gather knowledge on the abilities of other teams' bots. This will all be helpful when we are paired randomly with other teams, as we know what they are able to do without having to ask too many extra questions. </p>
     <button id = backbutton onclick = "backFromSignOut()"> Go Back To Login</button>
   </section>
+
+  <aside id = indexShit> 
+      <h1> Index </h1>
+  </aside>
+
+
+
 </div>
 
 
