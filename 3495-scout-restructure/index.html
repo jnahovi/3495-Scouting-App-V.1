@@ -164,7 +164,7 @@
     </br>
   </section>
 
-    <section id = "climb-log">
+  <section id = "climb-log">
       
       <h1> Climbing Abilities </h1>
     <br>
@@ -172,11 +172,33 @@
     </br> <br>
       <input class = regular-checkbox type = "checkbox" id = "canClimbSecond" onclick = "addBotSkills()"> Check if the team can climb the second level (Hab)</input>
     </br> <br>
-      <input class = regular-checkbox  type = "checkbox" id ="canClimbThird" onclick = "addBotSkills()"> Check if team can climb the third level (Hab) </input>
-    </br> 
+      <input class = regular-checkbox type = "checkbox" id = "canClimbThird" onclick = "addBotSkills()"> Check if team can climb the third level (Hab) </input>
+    </br> <br>
+      <input class = regular-checkbox type = "checkbox" id = "canLiftOthers" onclick = "addBotSkills()"> Check if team can carry other bots (Hab) 
+      </input>
+    </br>
+    <br></br>
+
 
   </section>
 
+  <section id = "issues-log">
+    <h1> Issues Log </h1>
+    <br>
+    <input class = regular-checkbox type = "checkbox" id = "brokeDown" onclick = "addBotSkills()"> Check if the team broke down in the middle of the match (lost comms) </input>
+  </br><br>
+    <input class = regular-checkbox type = "checkbox" id = "brownouts" onclick = "addBotSkills()"> Check if the team had brownouts in the middle of the match
+  </br><br></br>
+  </section>
+
+  <section id = "defense-log">
+    <h1> Defense Log </h1>
+    <br>
+    <input class = regular-checkbox type = "checkbox" id = "defendCheck" onclick = "addBotSkills()"> Check if the team played defense </input>
+    </br><br>
+    <input type = number placeholder = "Defense Rating (1-10)..." id = "aggroRating" class = fuckingKillMe></input>
+  </br>
+</section>
 
   <section id = "submitTheShit">
     <button class = submission id = submitAllTheShit onclick="submitAllTheNumbers()"> Submit Data </button>
@@ -199,8 +221,6 @@
 
 
 </div>
-
-
 
     <script src = "app.js"> </script>
 

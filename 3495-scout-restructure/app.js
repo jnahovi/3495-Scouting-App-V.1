@@ -12,10 +12,13 @@ var statPickHat = new Boolean (false);
 var statFloorHat = new Boolean (false);
 var firstLvlClimb = new Boolean (false);
 var secondLvlClimb = new Boolean (false);
-var thirdLvlClimb = new Boolean (false); 
+var thirdLvlClimb = new Boolean (false);
+var canCarry = new Boolean (false);
+var brokeDown = new Boolean (false);
+var brownOut = new Boolean (false);
+var canDefend = new Boolean (false);
 
-var createObjectClickCount = 0;
-var teamCount = 0;
+
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -29,6 +32,8 @@ var teamCount = 0;
       document.getElementById("indexShit").style.display = "none";
       document.getElementById("navigation").style.display = "block";
       document.getElementById("climb-log").style.display = "none";
+      document.getElementById("issues-log").style.display = "none";
+      document.getElementById("defense-log").style.display = "none";
       
       var user = firebase.auth().currentUser.email;
       var userInfo = firebase.UserInfo;
@@ -53,6 +58,8 @@ var teamCount = 0;
       document.getElementById("indexShit").style.display = "none";
       document.getElementById("navigation").style.display = "none";
       document.getElementById("climb-log").style.display = "none";
+      document.getElementById("issues-log").style.display = "none";
+      document.getElementById("defense-log").style.display = "none";
       
    
     }
@@ -114,18 +121,20 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
       document.getElementById("signout").style.display = "none";
       document.getElementById("thankYou").style.display = "none";
       document.getElementById("indexShit").style.display = "none";
+      document.getElementById("issues-log").style.display = "block";
+      document.getElementById("defense-log").style.display = "block";
       window.canCargo = false;
-      console.log(window.canCargo);
       window.createObjectClickCount = 0;
 
 
   }
 
-    function submitAllTheNumbers(team, match, hatch_skills, cargo_skills, first_level, second_level, third_level, off_floor, from_station) {
+  function submitAllTheNumbers() {
     var cargoPoints = document.getElementById('totalCargo').value;
     var hatchPoints = document.getElementById('totalHatch').value;
     var teamNumber = document.getElementById('teamNumber').value;
     var matchNumber = document.getElementById('matchNumber').value;
+    var defenseValue = document.getElementById("aggroRating").value
     var averageHatchTime = 120 / document.getElementById('totalHatch').value;
     var averageCargoTime = 120/ document.getElementById('totalCargo').value;
     window.cargoPoints = document.getElementById('totalCargo').value;
@@ -134,59 +143,70 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     window.matchNumber = document.getElementById('matchNumber').value;
     window.averageHatchTime = 120 / document.getElementById('totalHatch').value;
     window.averageCargoTime = 120/ document.getElementById('totalCargo').value;
+    window.defenseValue = document.getElementById("aggroRating").value;
     
-    if(document.getElementById('totalCargo').value == "") {
+    if(document.getElementById('totalHatch').value == "") {
       hatchPoints = 0;
     }
     if(document.getElementById("totalCargo").value == "") {
       cargoPoints = 0;
     }
+    if(document.getElementById("aggroRating").value == "") {
+      defenseValue = 0;
+    }
     if(window.canCargo == false) {
-      window.cargoAbilityString = "Data pulled from the most recent match shows that this team does not have the ability to place cargo. ";
+      window.cargoAbilityString = "Can't place cargo. ";
     }
     if(window.firstlvl == false) {
-      window.cargoFirstAbility = "This team does not have the ability to place cargo on the first level of the rocket ship.";
+      window.cargoFirstAbility = "Can't get first level of the rocket ship.";
     }
     if(window.secondlvl == false) {
-      window.cargoSecondAbility = "This team does not have the ability to place cargo on the second level of the rocket ship.";
+      window.cargoSecondAbility = "Can't get second level of the rocket ship.";
     }
     if(window.thirdlvl == false) {
-      window.cargoThirdAbility = "This team does not have the ability to place cargo on the third level of the rocket ship.";
+      window.cargoThirdAbility = "Can't get third level of the rocket ship.";
     }
 
     if(window.firstlvlhat == false) {
-      window.hatchFirstAbility = "This team does not have the ability to place hatches on the first level of the rocket ship."
+      window.hatchFirstAbility = "Can't get first level of the rocket ship.";
     }
     if (window.secondlvlhat == false) {
-      window.hatchSecondAbility = "This team does not have the ability to place hatches on the second level of the rocket ship."
+      window.hatchSecondAbility = "Can't get second level of the rocket ship.";
     }
     if (window.thirdlvlhat == false) {
-      window.hatchThirdAbility = "This team does not have the ability to place hatches on the third level of the rocket ship."
+      window.hatchThirdAbility = "Can't get third level of the rocket ship.";
     }
     if(window.canHatch == false) {
-      window.hatchAbilityString = "This team does not have the ability to place hatches in general."
+      window.hatchAbilityString = "Can't place hatches.";
     }
     if(window.firstLvlClimb == false) {
-      window.climbFirstAbility = "This team cannot climb on the first level of the HAB.";
+      window.climbFirstAbility = "Cannot climb on the first level of the HAB.";
     }
     if(window.secondLvlClimb == false) {
-      window.climbSecondAbility = "This team cannot climb on the second level of the HAB.";
+      window.climbSecondAbility = "Cannot climb on the second level of the HAB.";
     }
     if(window.thirdLvlClimb == false) {
-      window.climbThirdAbility = "This team cannot climb on the third level of the HAB.";
+      window.climbThirdAbility = "Cannot climb on the third level of the HAB.";
     }
-
-    console.log(window.cargoAbilityString);
-    console.log(window.canCargo);
-    
+    if(window.canCarry == false) {
+      window.canCarryClimb = "Cannot carry other teams.";
+    }
+    if(window.brokeDown == false) {
+      window.brokeDownSentence = "Didn't break down";
+    }
+    if(window.brownOut == false) {
+      window.brownOutSentence = "Didn't brown out";
+    }
+    if(window.canDefend == false) {
+      window.defendSentence = "Didn't defend";
+    }
     if (document.getElementById('totalHatch').value == 0) {
-      averageHatchTime = 0 // error message, means that the average couldn't be counted
+      averageHatchTime = 120 // error message, means that the average couldn't be counted
     }else {
       averageHatchTime = 120 / document.getElementById('totalHatch').value;
     }
-   
     if (document.getElementById('totalCargo').value == 0) {
-      averageCargoTime = 0
+      averageCargoTime = 120;
     }else {
       averageCargoTime = 120 / document.getElementById('totalCargo').value;
     }
@@ -218,44 +238,50 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
       Can_Climb_First_Level: window.firstLvlClimb,
       Can_Climb_Second_Level: window.secondLvlClimb,
       Can_Climb_Third_Level: window.secondLvlClimb,
-      Average_Hatch_Time: averageHatchTime,
-      Average_Cargo_Time: averageCargoTime,
+      Defense_Value: defenseValue,
       User: firebase.auth().currentUser.email,
+      Match: matchNumber,
 
   });
 
     var skillArray = [];
+    var averageCargoTime = [];
+    var averageHatchTime
     window.skillArray = [];
     var hatchSkillArray = [];
     window.hatchSkillArray = [];
+    var aggroArray = [];
+    window.aggroArray = [];
+    window.averageCargoTime = [];
+    window.averageHatchTime = [];
 
     refObject.on("child_added", function(data, prevChildKey) {
        
        var teamInformation = data.val();
-       console.log(teamInformation.cargo_skills);
        var currentTeamSkill = parseInt(teamInformation.cargo_skills);
        skillArray.push(currentTeamSkill);
-       window.skillArray.push(currentTeamSkill);
-       console.log(window.skillArray);
-       
+       window.skillArray.push("Match " + teamInformation.Match + ": " + "Cargo: " + currentTeamSkill + "\n");
+       var formattedTeamInfo = skillArray.join(" ");
+       window.formattedTeamInfo = skillArray.join(" ");
+       console.log(formattedTeamInfo)
+
        var currentHatchSkill = parseInt(teamInformation.hatch_skills);
        hatchSkillArray.push(currentHatchSkill);
-       window.hatchSkillArray.push(currentHatchSkill);
+       window.hatchSkillArray.push("Match " + teamInformation.Match + ": " + "Hatches: " + currentHatchSkill + "\n");
+       var formattedHatchInfo = hatchSkillArray.join(" ");
+       window.formattedHatchInfo = hatchSkillArray.join(" ");
+       
 
-       let count = window.skillArray.length;
-       console.log(count);
-       console.log(window.skillArray);
-       var sum = window.skillArray.reduce(function(a, b) { return a + b; }, 0);
-       console.log(sum);
-       var averageCargoNumber = sum / count;
-       window.averageCargoNumber = sum / count;
+       var aggroRating = parseInt(teamInformation.Defense_Value);
+       window.aggroArray.push(aggroRating);
 
-       let hatchCount = window.hatchSkillArray.length;
-       var hatchSum = window.hatchSkillArray.reduce(function(a, b) { return a + b; }, 0);
-       var averageHatchNumber = hatchSum / hatchCount;
-       window.averageHatchNumber = hatchSum / hatchCount;
-       console.log(averageHatchNumber);
-       console.log(hatchSkillArray);
+
+       let aggroCount = window.aggroArray.length;
+       var aggroSum = window.aggroArray.reduce(function(a, b) { return a + b; }, 0);
+       var averageAggroNumber = aggroSum / aggroCount;
+       window.averageAggroNumber = aggroSum / aggroCount;
+
+   
 
     });
 
@@ -264,6 +290,7 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
       }, function (error) {
         console.log("Error" + errorCode);
       })
+
 
 
 
@@ -286,8 +313,13 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     var hatchFloorPickup = document.getElementById("cargoGroundPickup");
     var hatchStatPickup = document.getElementById("cargoStatPickup") ;
     var climbFirstStory = document.getElementById("canClimbFirst");
+    window.climbFirstStory = document.getElementById("canClimbFirst");
     var climbSecondStory = document.getElementById("canClimbSecond");
     var climbThirdStory = document.getElementById("canClimbThird");
+    var brownOutValue = document.getElementById("brownouts");
+    var canLiftBots = document.getElementById("canLiftOthers");
+    var brokeDownValue = document.getElementById("brokeDown");
+    var defendCheck = document.getElementById("defendCheck");
     var cargoAbilityString = "We have a lack of data regarding this team's ability to place cargo"
     var cargoFirstAbility = "We have a lack of data regarding this team's ability to place cargo on the first level of the rocket";
     var cargoSecondAbility = "We have a lack of data regarding this team's ability to place cargo on the second level of the rocket";
@@ -299,7 +331,11 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     var climbFirstAbility = "We have a lack of data regarding this team's ability to climb the first level";
     var climbSecondAbility = "We have a lack of data regarding this team's ability to climb the second level";
     var climbThirdAbility = "We have a lack of data regarding this team's ability to climb the third level";
-    var cargoAverage = "On average, this team can place an average of" + window.averageCargoNumber;
+    var canCarryClimb = "We have a lack of data regarding whether or not this team can assist other bots";
+    var brownOutSentence = "";
+    var brokeDownSentence = "";
+    var defendSentence = "We have a lack of data regarding this team's ability to defend";
+    var aggroRatingSentence = "Average aggro rating" + window.averageAggroNumber;
     window.cargoAbilityString = "We have a lack of data regarding this team's ability to place cargo";
     window.cargoFirstAbility = "We have a lack of data regarding this team's ability to place cargo on the first level of the rocket";
     window.cargoSecondAbility = "We have a lack of data regarding this team's ability to place cargo on the second level of the rocket";
@@ -311,36 +347,39 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     window.climbFirstAbility = "We have a lack of data regarding this team's ability to climb the first level";
     window.climbSecondAbility = "We have a lack of data regarding this team's ability to climb the second level";
     window.climbThirdAbility = "We have a lack of data regarding this team's ability to climb the third level";
-    window.cargoAverage = "On average, this team can place an average of" + window.averageCargoNumber;
-
-
+    window.canCarryClimb = "We have a lack of data regarding whether or not this team can assist other bots";
+    window.brownOutSentence = "";
+    window.brokeDownSentence = "";
+    window.defendSentence = "We have a lack of data regarding this team's ability to defend"
+    window.aggroRatingSentence = "Average aggro rating" + window.averageAggroNumber;
+    
 
     document.getElementById("signout").style.display = "none";
 
     if(cargoCheck.checked == true) {
       window.canCargo = true;
-      window.cargoAbilityString = "From the most recent match, this team can place cargo in general."
+      window.cargoAbilityString = "Can place cargo."
     }else if (cargoCheck.checked == false) {
       window.canCargo = false;
       window.cargoAbilityString = "From the most recent match, this team cannot place cargo in general."
     }
     if(cargoFirstLevel.checked == true) {
       window.firstlvl = true;
-      window.cargoFirstAbility = "This team can place cargo on the first level of the cargo ship."
+      window.cargoFirstAbility = "Can place on first level."
     }else if (cargoFirstLevel.checked == false) {
       window.firstlvl = false;
       window.cargoFirstAbility = "This team cannot place cargo on the first level of the cargo ship."
     }
     if(cargoSecondLevel.checked == true) {
       window.secondlvl = true;
-      window.cargoSecondAbility = "This team can place cargo on the second level of the cargo ship."
+      window.cargoSecondAbility = "Can place on second level."
     }else if (cargoSecondLevel.checked == false) {
       window.secondlvl = false;
       window.cargoSecondAbility = "This team can place cargo on the second level of the cargo ship."
     }
     if(cargoThirdLevel.checked == true) {
       window.thirdlvl = true;
-      window.cargoThirdAbility = "This team can place cargo on the third level of the cargo ship."
+      window.cargoThirdAbility = "Can place on third level."
     }else if (cargoThirdLevel.checked == false) {
       window.thirdlvl = false;
       window.cargoThirdAbility = "This team cannot place cargo on the third level of the cargo ship."
@@ -357,28 +396,28 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     }
     if(hatchCheck.checked == true) {
       window.canHatch = true;
-      window.hatchAbilityString = "From the most recent match, this team can place hatches in general."
+      window.hatchAbilityString = "Can place hatches in general."
     }else if (hatchCheck.checked == false) {
       window.canHatch = false;
       window.hatchAbilityString = "This team can't place hatches in general."
     }
     if(hatchFirstLevel.checked == true) {
       window.firstlvlhat = true;
-      window.hatchFirstAbility = "This team can place hatches on the first level of the rocket ship."
+      window.hatchFirstAbility = "Hatches on the first level of the rocket ship."
     }else if (hatchFirstLevel.checked == false) {
       window.firstlvlhat = false;
       window.hatchFirstAbility = "This team can't place hatches on the first level of the rocket ship."
     }
     if(hatchSecondLevel.checked == true) {
       window.secondlvlhat = true;
-      window.hatchSecondAbility = "This team can place hatches on the second level of the rocket ship."
+      window.hatchSecondAbility = "Hatches on the second level of the rocket ship."
     }else if (hatchSecondLevel.checked == false) {
       window.secondlvlhat = false;
       window.hatchThirdAbility = "This team can't place hatches on the second level of the rocket ship."
     }
     if(hatchThirdLevel.checked == true) {
       window.thirdlvlhat = true;
-      window.hatchThirdAbility = "This team can place hatches on the third level of the rocket ship."
+      window.hatchThirdAbility = "Hatches on the third level of the rocket ship."
     }else if (hatchThirdLevel.checked == false) {
       window.thirdlvlhat = false;
       window.hatchThirdAbility = "This team can't place hatches on the third level of the rocket ship."
@@ -395,26 +434,63 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     }
     if (climbFirstStory.checked == true) {
       window.firstLvlClimb = true;
-      window.climbFirstAbility = "This team has the ability to climb on the first level of the HAB.";
-    }else if (climbFirstAbility.checked == false) {
+      window.climbFirstAbility = "Can climb first level of the HAB.";
+      console.log(firstLvlClimb);
+    }else if (climbFirstStory.checked == false) {
       window.firstLvlClimb = false;
       window.climbFirstAbility = "This team cannot climb on the first level.";
     }
 
     if (climbSecondStory.checked == true) {
       window.secondLvlClimb = true;
-      window.climbSecondAbility = "This team has the ability to climb on the second level of the HAB.";
-    }else if (climbFirstAbility.checked == false) {
+      window.climbSecondAbility = "Can climb on the second level of the HAB.";
+    }else if (climbSecondStory.checked == false) {
       window.firstLvlClimb = false;
       window.climbSecondAbility = "This team cannot climb on the second level.";
     }
 
     if (climbThirdStory.checked == true) {
       window.thirdLvlClimb = true;
-      window.climbThirdAbility = "This team has the ability to climb on the third level of the HAB.";
-    }else if (climbFirstAbility.checked == false) {
+      window.climbThirdAbility = "Can climb on the third level of the HAB.";
+    }else if (climbThirdStory.checked == false) {
       window.firstLvlClimb = false;
       window.climbThirdAbility = "This team cannot climb on the third level.";
+    }
+
+    if(brownOutValue.checked == true) {
+      window.brownOut = true;
+      window.brownOutSentence = "Browned out last match.";
+    }else if(brownOutValue.checked == false) {
+      window.brownOut = false;
+    }
+
+    if(brokeDownValue.checked == true) {
+      window.brokeDown = true;
+      window.brokeDownSentence = "Broke down last match.";
+    }else if(brownOutValue.checked == false) {
+      window.brownOut = false;
+    }
+
+    if(canLiftBots.checked == true) {
+      window.canCarry = true;
+      console.log(window.canCarry);
+      window.canCarryClimb = "Can carry other bots";
+    }else if (canCarryClimb.checked == false){
+      window.canCarry = false;
+      window.canCarryClimb = "This team was unable to carry other bots while climbing.";
+    }
+
+    if(defendCheck.checked == true) {
+      window.canDefend = true;
+      window.defendSentence = "Can defend";
+    }else if (defendCheck.checked == false) {
+      window.canDefend = false;
+      window.defendSentence = "Can't defend";
+    }
+
+    if (window.climbFirstStory.checked == true) {
+        window.firstLvlClimb = true;
+        window.climbFirstAbility = "Can climb on the first level (hab)";
     }
 
 
@@ -431,16 +507,60 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
       document.getElementById("thankYou").style.display = "block";
       document.getElementById("indexShit").style.display = "none";
       document.getElementById("climb-log").style.display = "none";
-
-      window.cargoAverage = "On average, this team can place an average of " + window.averageCargoNumber + " cargo balls, and " + window.averageHatchNumber + " hatches";
+      document.getElementById("issues-log").style.display = "none";
+      document.getElementById("defense-log").style.display = "none";
       
-      var totalAbilityString = "All Abilities: " + window.cargoAbilityString + window.cargoFirstAbility + " " + window.cargoSecondAbility + " " + window.cargoThirdAbility + " " + window.hatchAbilityString + " " + window.hatchFirstAbility + " " + window.hatchSecondAbility + " " + window.hatchThirdAbility + " " + window.climbFirstAbility + " " + window.climbSecondAbility + " " + window.climbThirdAbility + " " + window.cargoAverage;
-      window.totalAbilityString = "All Abilities: " + window.cargoAbilityString + window.cargoFirstAbility + " " + window.cargoSecondAbility + " " + window.cargoThirdAbility + " " + window.hatchAbilityString + " " + window.hatchFirstAbility + " " + window.hatchSecondAbility + " " + window.hatchThirdAbility + " " + window.climbFirstAbility + " " + window.climbSecondAbility + " " + window.climbThirdAbility + " " + window.cargoAverage;
+ 
+
+      console.log(window.firstLvlClimb);
+
+      window.cargoAverage = "Average of " + window.averageCargoNumber + " cargo balls.";
+      window.hatchAverage = "Average of " + window.averageHatchNumber + " hatches.";
+      window.aggroRatingSentence = "Average aggro rating: " + window.averageAggroNumber;
+      
+      var totalAbilityString = "Cargo: " 
+      + window.cargoAbilityString + window.cargoFirstAbility + " " + window.cargoSecondAbility + " " + window.cargoThirdAbility + " " + window.skillArray; 
+      
+      var totalAbilityStringPt2 = "Hatches: "
+      + window.hatchAbilityString + " " + window.hatchFirstAbility + "\n " + window.hatchSecondAbility + " \n" + window.hatchThirdAbility  + "\n " + window.hatchSkillArray;
+
+      var totalAbilityStringPt3 = "Climbing: "
+      + window.climbFirstAbility + " " + window.climbSecondAbility + " " + window.climbThirdAbility + " " + window.canCarryClimb + " " 
+
+      var totalAbilityStringPt4 = "Problems: "
+      + window.brownOutSentence + window.brokeDownSentence
+
+      var totalAbilityStringPt5 = "Defense: "
+      + window.defendSentence + window.aggroRatingSentence
+
+      window.totalAbilityString = "Cargo: \n" 
+      + window.cargoAbilityString + " \n" + window.cargoFirstAbility + " \n" + window.cargoSecondAbility + " \n" + window.cargoThirdAbility + " \n" + window.skillArray + " \n";
+      
+      window.totalAbilityStringPt2 = "Hatches: \n" 
+      + window.hatchAbilityString + " \n" + window.hatchFirstAbility + " \n" + window.hatchSecondAbility + " \n" + window.hatchThirdAbility  + " \n" + window.hatchSkillArray + " \n";
+
+      window.totalAbilityStringPt3 = "Climbing: \n"
+      + window.climbFirstAbility + " \n" + window.climbSecondAbility + " \n" + window.climbThirdAbility + " \n" + window.canCarryClimb;
+
+      window.totalAbilityStringPt4 = "Problems: \n"
+      + window.brownOutSentence + " \n" + window.brokeDownSentence;
+
+      window.totalAbilityStringPt5 = "Defense: \n"
+      + window.defendSentence  + " \n" + window.aggroRatingSentence;
+
+
+
       var firebaseRef = firebase.database().ref("Index/");
   
       var indexRef = firebaseRef.child("Data: ");
       firebaseRef.child('Team: ' + window.teamNumber).set( {
-        Abilities: window.totalAbilityString,
+        Cargo_Abilities: window.totalAbilityString,
+        Hatch_Abilities: window.totalAbilityStringPt2,
+        Climbing_Abilities: window.totalAbilityStringPt3,
+        Problems: window.totalAbilityStringPt4,
+        Defense: window.totalAbilityStringPt5,
+        Aggro_Rating: window.averageAggroNumber,
+
         Team: window.teamNumber,
       });
 
@@ -472,7 +592,12 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
         new_team.id = "new_team";
         var para = document.createTextNode(newObjectTeam.Team);
         new_team.appendChild(para);
-        new_team.onclick = function(){window.alert(newObjectTeam.Abilities)};
+        new_team.onclick = function(){window.alert(newObjectTeam.Cargo_Abilities)
+                                      window.alert(newObjectTeam.Hatch_Abilities)
+                                      window.alert(newObjectTeam.Climbing_Abilities)
+                                      window.alert(newObjectTeam.Problems);
+        };
+
         document.getElementById("indexShit").appendChild(new_team);
         var teamArray = [];
         teamArray.push(newObjectTeam.Team);
@@ -489,7 +614,12 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
         var para = document.createTextNode(newObjectTeam.Team);
         window.para = document.createTextNode(newObjectTeam.Team);
         window.new_team.appendChild(para);
-        new_team.onclick = function(){window.alert(newObjectTeam.Abilities)};
+        new_team.onclick = function(){window.alert(newObjectTeam.Cargo_Abilities)
+                                      window.alert(newObjectTeam.Hatch_Abilities)
+                                      window.alert(newObjectTeam.Climbing_Abilities)
+                                      window.alert(newObjectTeam.Problems)
+        };
+
       });
 
 
@@ -505,9 +635,12 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
       document.getElementById("submitTheShit").style.display = "none";
       document.getElementById("thankYou").style.display = "none";
       document.getElementById("indexShit").style.display = "none";
+      document.getElementById("issues-log").style.display = "none";
+      document.getElementById("defense-log").style.display = "none";
       location.reload();
 
   }
+
 
 
 

@@ -14,16 +14,17 @@ function createTeamObject() {
 
     firebaseRef.on("child_added", function(data, prevChildKey) {
       var newObjectTeam = data.val();
-      console.log(newObjectTeam.Abilities);
-      console.log(newObjectTeam.Team);
-      console.log(newObjectTeam.Team);
-      console.log(window.createObjectClickCount);
       var new_team = document.createElement("BUTTON");
       window.new_team = document.createElement("BUTTON");
       new_team.id = "new_team";
       var para = document.createTextNode(newObjectTeam.Team);
       new_team.appendChild(para);
-      new_team.onclick = function(){window.alert(newObjectTeam.Abilities)};
+      new_team.onclick = function(){window.alert(newObjectTeam.Cargo_Abilities)
+                                    window.alert(newObjectTeam.Hatch_Abilities)
+                                    window.alert(newObjectTeam.Climbing_Abilities)
+                                    window.alert(newObjectTeam.Problems)
+                                    window.alert(newObjectTeam.Defense)
+      };
       document.getElementById("indexSection").appendChild(new_team);
       var teamArray = [];
       teamArray.push(newObjectTeam.Team);
