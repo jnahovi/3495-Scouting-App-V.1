@@ -4,6 +4,7 @@
   <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
 <script>
   // Initialize Firebase
   var config = {
@@ -125,21 +126,17 @@
 
   <div class = mainpage id = thirdfield>
     <section id = "hatch-log">
-      <h1> Hatch Abilities </h1>
+      <h1> Color Wheel Abilities </h1>
       <br>
-      <input class = regular-checkbox type = "checkbox" id = "canPlaceHatch" onclick = "addBotSkills()"> Check if team can place hatches </input>
+      <input class = regular-checkbox type = "checkbox" id = "canPlaceHatch" onclick = "addBotSkills()"> Check if team can spin the wheel </input>
     </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "hatchFirstLvl" onclick = "addBotSkills()"> Check if team can place hatch on 1st Level (Rocket) </input>
+      <input class = regular-checkbox type = "checkbox" id = "hatchFirstLvl" onclick = "addBotSkills()"> Check if team can/did rotate the wheel between 3-5 times </input>
     </br> <br>
-      <input class = regular-checkbox  type = "checkbox" id = "hatchSecondLvl" onclick = "addBotSkills()"> Check if team can place hatch on 2nd Level (Rocket) </input>
+      <input class = regular-checkbox  type = "checkbox" id = "hatchSecondLvl" onclick = "addBotSkills()"> Check if team can select a color (the correct color) </input>
       </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "hatchThirdLvl" onclick = "addBotSkills()"> Check if team can place hatch on 3rd Level (Rocket) </input>
-      </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "hatchStatPickup" onclick = "addBotSkills()"> Check if team can pick up hatch from human player </input>
-      </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "hatchGroundPickup" onclick = "addBotSkills()"> Check if the team can pick up hatch from ground </input>
-    </br> <br>
-      <input class = fuckingKillMe type = number placeholder = "Hatch Number..." id = "totalHatch"/>
+      <input class = regular-checkbox type = "checkbox" id = "hatchThirdLvl" onclick = "addBotSkills()"> Check if team can run under the trench </input>
+
+
     </br>
 
   </section>
@@ -147,20 +144,20 @@
   <section id = "cargo-log">
       <h1> Cargo Abilities </h1>
       <br>
-      <input class = regular-checkbox type = "checkbox" id = "canPlaceCargo" onclick = "addBotSkills()"> Check if team can place cargo </input>
+      <input class = regular-checkbox type = "checkbox" id = "canPlaceCargo" onclick = "addBotSkills()"> Check if team can shoot balls </input>
     </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "cargoFirstLvl" onclick = "addBotSkills()"> Check if team can place cargo on 1st Level (Rocket) </input>
+      <input class = regular-checkbox type = "checkbox" id = "cargoFirstLvl" onclick = "addBotSkills()"> Check if team can shoot balls into 1st Level (lower level) </input>
     </br> <br>
-      <input class = regular-checkbox  type = "checkbox" id ="cargoSecondLvl" onclick = "addBotSkills()"> Check if team can place cargo on 2nd Level (Rocket) </input>
+      <input class = regular-checkbox  type = "checkbox" id ="cargoSecondLvl" onclick = "addBotSkills()"> Check if team can shoot balls into 2nd Level (higher level) </input>
       </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "cargoThirdLvl" onclick = "addBotSkills()"> Check if team can place cargo on 3rd Level (Rocket) </input>
+      <input class = regular-checkbox type = "checkbox" id = "cargoThirdLvl" onclick = "addBotSkills()"> Check if team can shoot balls into 3rd Level (highest level) </input>
       </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "cargoStatPickup" onclick = "addBotSkills()"> Check if team can pick up cargo from human player </input>
+      <input class = regular-checkbox type = "checkbox" id = "cargoStatPickup" onclick = "addBotSkills()"> Check if team can pick up balls from human player </input>
       </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "cargoGroundPickup" onclick = "addBotSkills()"> Check if the team can pick up cargo from ground </input>
+      <input class = regular-checkbox type = "checkbox" id = "cargoGroundPickup" onclick = "addBotSkills()"> Check if the team can pick up balls from ground </input>
     </br> <br>
 
-      <input class = fuckingKillMe type = number placeholder = "Cargo Number..." id = "totalCargo"/>
+      <input class = fuckingKillMe type = number placeholder = "Ball Number..." id = "totalCargo"/>
     </br>
   </section>
 
@@ -168,13 +165,11 @@
       
       <h1> Climbing Abilities </h1>
     <br>
-      <input class = regular-checkbox type = "checkbox" id = "canClimbFirst" onclick = "addBotSkills()"> Check if team can climb the first level (Hab) </input>
+      <input class = regular-checkbox type = "checkbox" id = "canClimbFirst" onclick = "addBotSkills()"> Check if team can climb the shield generator switch </input>
     </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "canClimbSecond" onclick = "addBotSkills()"> Check if the team can climb the second level (Hab)</input>
+      <input class = regular-checkbox type = "checkbox" id = "canClimbSecond" onclick = "addBotSkills()"> Check if the team can balance the scale</input>
     </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "canClimbThird" onclick = "addBotSkills()"> Check if team can climb the third level (Hab) </input>
-    </br> <br>
-      <input class = regular-checkbox type = "checkbox" id = "canLiftOthers" onclick = "addBotSkills()"> Check if team can carry other bots (Hab) 
+      <input class = regular-checkbox type = "checkbox" id = "canLiftOthers" onclick = "addBotSkills()"> Check if team can carry other bots </input>  
       </input>
     </br>
     <br></br>

@@ -20,20 +20,43 @@ var canDefend = new Boolean (false);
 
 
 
+var script = document.createElement('script');
+script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";
+script.type = 'text/javascript';
+document.getElementsByTagName('head')[0].appendChild(script);
+
+
   firebase.auth().onAuthStateChanged(function(user) {
+    
     if (user) {
-      document.getElementById("firstfields").style.display = "none";
-      document.getElementById("continue").style.display = "none";
-      document.getElementById("secondfields").style.display = "block";
-      document.getElementById("hatch-log").style.display = "none";
-      document.getElementById("cargo-log").style.display = "none";
-      document.getElementById("submitTheShit").style.display = "none";
-      document.getElementById("thankYou").style.display = "none";
-      document.getElementById("indexShit").style.display = "none";
-      document.getElementById("navigation").style.display = "block";
-      document.getElementById("climb-log").style.display = "none";
-      document.getElementById("issues-log").style.display = "none";
-      document.getElementById("defense-log").style.display = "none";
+        $(document).ready(function(){
+          //document.getElementById("firstfields").style.display = "none";
+          $("#firstfields").hide();
+          //document.getElementById("continue").style.display = "none";
+          $("#continue").hide();
+          //document.getElementById("secondfields").style.display = "block";
+          $("#secondfields").show();
+          //document.getElementById("hatch-log").style.display = "none";
+          $("#hatch-log").hide();
+          //document.getElementById("cargo-log").style.display = "none";
+          $("#cargo-log").hide();
+          //document.getElementById("submitTheShit").style.display = "none";
+          $("submitTheShit").hide();
+          //document.getElementById("thankYou").style.display = "none";
+          $("#thankYou").hide();
+        //document.getElementById("indexShit").style.display = "none";
+          $("#indexShit").hide();
+          //document.getElementById("navigation").style.display = "block";
+          $("#navigation").show();
+          //document.getElementById("climb-log").style.display = "none";
+          $("#climb-log").hide();
+          //document.getElementById("issues-log").style.display = "none";
+          $("#issues-log").hide();
+          //document.getElementById("defense-log").style.display = "none";
+          $("#defense-log").hide()
+          $("#signout").hide();
+          $("#submitAllTheShit").hide();
+       });
       
       var user = firebase.auth().currentUser.email;
       var userInfo = firebase.UserInfo;
@@ -44,12 +67,16 @@ var canDefend = new Boolean (false);
         window.alert ("Welcome : " + firebase.auth().currentUser.email);
         console.log(firebase.auth().currentUser.email);
       }
+    
+    
       
     
     } else {
-      
-      document.getElementById("firstfields").style.display = "block";
-      document.getElementById("secondfields").style.display = "none";
+      $(document).ready(function() {
+      //document.getElementById("firstfields").style.display = "block";
+      $("#firstfields").show();
+      //document.getElementById("secondfields").style.display = "none";
+      $("#secondfields").hide();
       document.getElementById("continue").style.display = "none";
       document.getElementById("hatch-log").style.display = "none";
       document.getElementById("cargo-log").style.display = "none";
@@ -60,8 +87,8 @@ var canDefend = new Boolean (false);
       document.getElementById("climb-log").style.display = "none";
       document.getElementById("issues-log").style.display = "none";
       document.getElementById("defense-log").style.display = "none";
-      
-   
+      });
+        
     }
   });
 
@@ -83,6 +110,7 @@ var canDefend = new Boolean (false);
 
   function logout() {
     firebase.auth().signOut()
+
   }
 
 
@@ -111,18 +139,31 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
 
 
   function continueToMain () {
-      document.getElementById("firstfields").style.display = "none";
-      document.getElementById("continue").style.display = "none";
-      document.getElementById("secondfields").style.display = "none";
-      document.getElementById("hatch-log").style.display = "block";
-      document.getElementById("cargo-log").style.display = "block";
-      document.getElementById("submitTheShit").style.display = "block"
-      document.getElementById("climb-log").style.display = "block";
-      document.getElementById("signout").style.display = "none";
-      document.getElementById("thankYou").style.display = "none";
-      document.getElementById("indexShit").style.display = "none";
-      document.getElementById("issues-log").style.display = "block";
-      document.getElementById("defense-log").style.display = "block";
+      //document.getElementById("firstfields").style.display = "none";
+      $("#firstfields").hide();
+      //document.getElementById("continue").style.display = "none";
+      $("#continue").hide();
+      //document.getElementById("secondfields").style.display = "none";
+      $("#secondfields").hide();
+      //document.getElementById("hatch-log").style.display = "block";
+      $("#hatch-log").show();
+      //document.getElementById("cargo-log").style.display = "block";
+      $("#cargo-log").show();
+      //document.getElementById("submitTheShit").style.display = "block";
+      $("#submitTheShit").show();
+      $("#submitAllTheShit").show();
+      //document.getElementById("climb-log").style.display = "block";
+      $("#climb-log").show();
+      //document.getElementById("signout").style.display = "none";
+      $("#signout").hide();
+      //document.getElementById("thankYou").style.display = "none";
+      $("#thankYou").hide();
+      //document.getElementById("indexShit").style.display = "none";
+      $("#indexShit").hide();
+      //document.getElementById("issues-log").style.display = "block";
+      $("#issues-log").show();
+      //document.getElementById("defense-log").style.display = "block";
+      $("#defense-log").show();
       window.canCargo = false;
       window.createObjectClickCount = 0;
 
@@ -131,23 +172,21 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
 
   function submitAllTheNumbers() {
     var cargoPoints = document.getElementById('totalCargo').value;
-    var hatchPoints = document.getElementById('totalHatch').value;
+
     var teamNumber = document.getElementById('teamNumber').value;
     var matchNumber = document.getElementById('matchNumber').value;
     var defenseValue = document.getElementById("aggroRating").value
-    var averageHatchTime = 120 / document.getElementById('totalHatch').value;
+
     var averageCargoTime = 120/ document.getElementById('totalCargo').value;
     window.cargoPoints = document.getElementById('totalCargo').value;
-    window.hatchPoints = document.getElementById('totalHatch').value;
+
     window.teamNumber = document.getElementById('teamNumber').value;
     window.matchNumber = document.getElementById('matchNumber').value;
-    window.averageHatchTime = 120 / document.getElementById('totalHatch').value;
+
     window.averageCargoTime = 120/ document.getElementById('totalCargo').value;
     window.defenseValue = document.getElementById("aggroRating").value;
     
-    if(document.getElementById('totalHatch').value == "") {
-      hatchPoints = 0;
-    }
+   
     if(document.getElementById("totalCargo").value == "") {
       cargoPoints = 0;
     }
@@ -155,39 +194,37 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
       defenseValue = 0;
     }
     if(window.canCargo == false) {
-      window.cargoAbilityString = "Can't place cargo. ";
+      window.cargoAbilityString = "Can't shoot balls. ";
     }
     if(window.firstlvl == false) {
-      window.cargoFirstAbility = "Can't get first level of the rocket ship.";
+      window.cargoFirstAbility = "Can't shoot to first level";
     }
     if(window.secondlvl == false) {
-      window.cargoSecondAbility = "Can't get second level of the rocket ship.";
+      window.cargoSecondAbility = "Can't shoot to second level";
     }
     if(window.thirdlvl == false) {
-      window.cargoThirdAbility = "Can't get third level of the rocket ship.";
+      window.cargoThirdAbility = "Can't shoot to third (highest) level";
     }
 
     if(window.firstlvlhat == false) {
-      window.hatchFirstAbility = "Can't get first level of the rocket ship.";
+      window.hatchFirstAbility = "Can't spin to certain rotations";
     }
     if (window.secondlvlhat == false) {
-      window.hatchSecondAbility = "Can't get second level of the rocket ship.";
+      window.hatchSecondAbility = "Can't spin to certain color";
     }
     if (window.thirdlvlhat == false) {
-      window.hatchThirdAbility = "Can't get third level of the rocket ship.";
+      window.hatchThirdAbility = "Can't run under trench";
     }
     if(window.canHatch == false) {
-      window.hatchAbilityString = "Can't place hatches.";
+      window.hatchAbilityString = "Can't spin wheel.";
     }
     if(window.firstLvlClimb == false) {
-      window.climbFirstAbility = "Cannot climb on the first level of the HAB.";
+      window.climbFirstAbility = "Cannot climb on the generator switch";
     }
     if(window.secondLvlClimb == false) {
-      window.climbSecondAbility = "Cannot climb on the second level of the HAB.";
+      window.climbSecondAbility = "Could not balance generator switch";
     }
-    if(window.thirdLvlClimb == false) {
-      window.climbThirdAbility = "Cannot climb on the third level of the HAB.";
-    }
+   
     if(window.canCarry == false) {
       window.canCarryClimb = "Cannot carry other teams.";
     }
@@ -200,11 +237,7 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     if(window.canDefend == false) {
       window.defendSentence = "Didn't defend";
     }
-    if (document.getElementById('totalHatch').value == 0) {
-      averageHatchTime = 120 // error message, means that the average couldn't be counted
-    }else {
-      averageHatchTime = 120 / document.getElementById('totalHatch').value;
-    }
+  
     if (document.getElementById('totalCargo').value == 0) {
       averageCargoTime = 120;
     }else {
@@ -225,19 +258,17 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     window.alert("Data Successfully Submitted");
     
     refObject.child('Match: ' + matchNumber).set( {
-      hatch_skills : hatchPoints,
+
       cargo_skills : cargoPoints,
-      First_Level_Rocket_Cargo : window.firstlvl,
-      First_Level_Rocket_Hatch : window.firstlvlhat,
-      Second_Level_Rocket_Cargo : window.secondlvl,
-      Second_Level_Rocket_Hatch : window.secondlvlhat,
-      Third_Level_Rocket_Cargo : window.thirdlvl,
-      Third_Level_Rocket_Hatch : window.thirdlvlhat,
-      Can_Grab_Hatch_Off_Floor : window.statFloorHat,
-      Can_Grab_Cargo_Off_Floor: window.statFloor,
-      Can_Climb_First_Level: window.firstLvlClimb,
-      Can_Climb_Second_Level: window.secondLvlClimb,
-      Can_Climb_Third_Level: window.secondLvlClimb,
+      Can_Shoot_Balls_To_First : window.firstlvl,
+      Can_Rotate_Wheel_NumofTimes : window.firstlvlhat,
+      Can_Shoot_Balls_To_Second : window.secondlvl,
+      Can_Spin_To_Certain_Color : window.secondlvlhat,
+      Can_Shoot_Balls_To_Third : window.thirdlvl,
+      Can_Run_Under_Trench: window.thirdlvlhat,
+      Can_Grab_Balls_Off_Floor: window.statFloor,
+      Can_Climb_Generator_Switch: window.firstLvlClimb,
+      Can_Balance_Switch: window.secondLvlClimb,
       Defense_Value: defenseValue,
       User: firebase.auth().currentUser.email,
       Match: matchNumber,
@@ -310,12 +341,12 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     var hatchFirstLevel = document.getElementById("hatchFirstLvl");
     var hatchSecondLevel = document.getElementById("hatchSecondLvl")
     var hatchThirdLevel = document.getElementById("hatchThirdLvl");
-    var hatchFloorPickup = document.getElementById("cargoGroundPickup");
-    var hatchStatPickup = document.getElementById("cargoStatPickup") ;
+
+
     var climbFirstStory = document.getElementById("canClimbFirst");
     window.climbFirstStory = document.getElementById("canClimbFirst");
     var climbSecondStory = document.getElementById("canClimbSecond");
-    var climbThirdStory = document.getElementById("canClimbThird");
+
     var brownOutValue = document.getElementById("brownouts");
     var canLiftBots = document.getElementById("canLiftOthers");
     var brokeDownValue = document.getElementById("brokeDown");
@@ -358,31 +389,31 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
 
     if(cargoCheck.checked == true) {
       window.canCargo = true;
-      window.cargoAbilityString = "Can place cargo."
+      window.cargoAbilityString = "Can shoot power cells."
     }else if (cargoCheck.checked == false) {
       window.canCargo = false;
-      window.cargoAbilityString = "From the most recent match, this team cannot place cargo in general."
+      window.cargoAbilityString = "From the most recent match, this team cannot shoot balls in general."
     }
     if(cargoFirstLevel.checked == true) {
       window.firstlvl = true;
-      window.cargoFirstAbility = "Can place on first level."
+      window.cargoFirstAbility = "Can shoot to first level."
     }else if (cargoFirstLevel.checked == false) {
       window.firstlvl = false;
-      window.cargoFirstAbility = "This team cannot place cargo on the first level of the cargo ship."
+      window.cargoFirstAbility = "This team cannot shoot to the first level"
     }
     if(cargoSecondLevel.checked == true) {
       window.secondlvl = true;
-      window.cargoSecondAbility = "Can place on second level."
+      window.cargoSecondAbility = "Can shoot to second level."
     }else if (cargoSecondLevel.checked == false) {
       window.secondlvl = false;
-      window.cargoSecondAbility = "This team can place cargo on the second level of the cargo ship."
+      window.cargoSecondAbility = "This team cannot shoot balls on the second level of the cargo ship."
     }
     if(cargoThirdLevel.checked == true) {
       window.thirdlvl = true;
-      window.cargoThirdAbility = "Can place on third level."
+      window.cargoThirdAbility = "Can shoot to third level."
     }else if (cargoThirdLevel.checked == false) {
       window.thirdlvl = false;
-      window.cargoThirdAbility = "This team cannot place cargo on the third level of the cargo ship."
+      window.cargoThirdAbility = "This team cannot shoot to the third level of the cargo ship."
     }
     if(cargoFloorPickup.checked == true) {
       window.statPick = true;
@@ -396,66 +427,50 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
     }
     if(hatchCheck.checked == true) {
       window.canHatch = true;
-      window.hatchAbilityString = "Can place hatches in general."
+      window.hatchAbilityString = "Can spin wheel"
     }else if (hatchCheck.checked == false) {
       window.canHatch = false;
-      window.hatchAbilityString = "This team can't place hatches in general."
+      window.hatchAbilityString = "Can't spin wheel"
     }
     if(hatchFirstLevel.checked == true) {
       window.firstlvlhat = true;
-      window.hatchFirstAbility = "Hatches on the first level of the rocket ship."
+      window.hatchFirstAbility = "Can rotate certain num of times"
     }else if (hatchFirstLevel.checked == false) {
       window.firstlvlhat = false;
-      window.hatchFirstAbility = "This team can't place hatches on the first level of the rocket ship."
+      window.hatchFirstAbility = "Can't rotate certain num of times"
     }
     if(hatchSecondLevel.checked == true) {
       window.secondlvlhat = true;
-      window.hatchSecondAbility = "Hatches on the second level of the rocket ship."
+      window.hatchSecondAbility = "Can rotate to certain color"
     }else if (hatchSecondLevel.checked == false) {
       window.secondlvlhat = false;
-      window.hatchThirdAbility = "This team can't place hatches on the second level of the rocket ship."
+      window.hatchSecondAbility = "Can't rotate to certain color"
     }
     if(hatchThirdLevel.checked == true) {
       window.thirdlvlhat = true;
-      window.hatchThirdAbility = "Hatches on the third level of the rocket ship."
+      window.hatchThirdAbility = "Can run under trench"
     }else if (hatchThirdLevel.checked == false) {
       window.thirdlvlhat = false;
-      window.hatchThirdAbility = "This team can't place hatches on the third level of the rocket ship."
+      window.hatchThirdAbility = "Can't run under trench"
     }
-    if(hatchStatPickup.checked == true) {
-      window.statPickHat = true;
-    }else if (hatchStatPickup.checked == false) {
-      window.statPickHat = false;
-    }
-    if (hatchFloorPickup.checked == true) {
-      window.statFloorHat = true;
-    }else if (hatchFirstLevel.checked == false) {
-      window.statFloorHat = false;
-    }
+ 
     if (climbFirstStory.checked == true) {
       window.firstLvlClimb = true;
-      window.climbFirstAbility = "Can climb first level of the HAB.";
+      window.climbFirstAbility = "Can climb onto generator switch";
       console.log(firstLvlClimb);
     }else if (climbFirstStory.checked == false) {
       window.firstLvlClimb = false;
-      window.climbFirstAbility = "This team cannot climb on the first level.";
+      window.climbFirstAbility = "Can't climb onto generator switch";
     }
 
     if (climbSecondStory.checked == true) {
       window.secondLvlClimb = true;
-      window.climbSecondAbility = "Can climb on the second level of the HAB.";
+      window.climbSecondAbility = "Can balance generator switch";
     }else if (climbSecondStory.checked == false) {
       window.firstLvlClimb = false;
-      window.climbSecondAbility = "This team cannot climb on the second level.";
+      window.climbSecondAbility = "Can't balance generator switch";
     }
 
-    if (climbThirdStory.checked == true) {
-      window.thirdLvlClimb = true;
-      window.climbThirdAbility = "Can climb on the third level of the HAB.";
-    }else if (climbThirdStory.checked == false) {
-      window.firstLvlClimb = false;
-      window.climbThirdAbility = "This team cannot climb on the third level.";
-    }
 
     if(brownOutValue.checked == true) {
       window.brownOut = true;
@@ -488,13 +503,10 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
       window.defendSentence = "Can't defend";
     }
 
-    if (window.climbFirstStory.checked == true) {
-        window.firstLvlClimb = true;
-        window.climbFirstAbility = "Can climb on the first level (hab)";
+    
+
     }
-
-
-  }
+  
 
   function continueToSignOut() {
       
@@ -514,18 +526,18 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
 
       console.log(window.firstLvlClimb);
 
-      window.cargoAverage = "Average of " + window.averageCargoNumber + " cargo balls.";
-      window.hatchAverage = "Average of " + window.averageHatchNumber + " hatches.";
+      window.cargoAverage = "Average of " + window.averageCargoNumber + " energy balls.";
+
       window.aggroRatingSentence = "Average aggro rating: " + window.averageAggroNumber;
       
-      var totalAbilityString = "Cargo: " 
+      var totalAbilityString = "Balls: " 
       + window.cargoAbilityString + window.cargoFirstAbility + " " + window.cargoSecondAbility + " " + window.cargoThirdAbility + " " + window.skillArray; 
       
-      var totalAbilityStringPt2 = "Hatches: "
-      + window.hatchAbilityString + " " + window.hatchFirstAbility + "\n " + window.hatchSecondAbility + " \n" + window.hatchThirdAbility  + "\n " + window.hatchSkillArray;
+      var totalAbilityStringPt2 = "Color Wheel: "
+      + window.hatchAbilityString + " " + window.hatchFirstAbility + "\n " + window.hatchSecondAbility + " \n" + window.hatchThirdAbility ;
 
       var totalAbilityStringPt3 = "Climbing: "
-      + window.climbFirstAbility + " " + window.climbSecondAbility + " " + window.climbThirdAbility + " " + window.canCarryClimb + " " 
+      + window.climbFirstAbility + " " + window.climbSecondAbility + " " + window.canCarryClimb + " " 
 
       var totalAbilityStringPt4 = "Problems: "
       + window.brownOutSentence + window.brokeDownSentence
@@ -533,14 +545,14 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
       var totalAbilityStringPt5 = "Defense: "
       + window.defendSentence + window.aggroRatingSentence
 
-      window.totalAbilityString = "Cargo: \n" 
+      window.totalAbilityString = "Balls: \n" 
       + window.cargoAbilityString + " \n" + window.cargoFirstAbility + " \n" + window.cargoSecondAbility + " \n" + window.cargoThirdAbility + " \n" + window.skillArray + " \n";
       
-      window.totalAbilityStringPt2 = "Hatches: \n" 
-      + window.hatchAbilityString + " \n" + window.hatchFirstAbility + " \n" + window.hatchSecondAbility + " \n" + window.hatchThirdAbility  + " \n" + window.hatchSkillArray + " \n";
+      window.totalAbilityStringPt2 = "Wheel: \n" 
+      + window.hatchAbilityString + " \n" + window.hatchFirstAbility + " \n" + window.hatchSecondAbility + " \n" + window.hatchThirdAbility  + " \n";
 
       window.totalAbilityStringPt3 = "Climbing: \n"
-      + window.climbFirstAbility + " \n" + window.climbSecondAbility + " \n" + window.climbThirdAbility + " \n" + window.canCarryClimb;
+      + window.climbFirstAbility + " \n" + window.climbSecondAbility + "\n" + window.canCarryClimb;
 
       window.totalAbilityStringPt4 = "Problems: \n"
       + window.brownOutSentence + " \n" + window.brokeDownSentence;
@@ -554,8 +566,8 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
   
       var indexRef = firebaseRef.child("Data: ");
       firebaseRef.child('Team: ' + window.teamNumber).set( {
-        Cargo_Abilities: window.totalAbilityString,
-        Hatch_Abilities: window.totalAbilityStringPt2,
+        Ball_Abilities: window.totalAbilityString,
+        Color_Wheel_Abilities: window.totalAbilityStringPt2,
         Climbing_Abilities: window.totalAbilityStringPt3,
         Problems: window.totalAbilityStringPt4,
         Defense: window.totalAbilityStringPt5,
@@ -592,8 +604,8 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
         new_team.id = "new_team";
         var para = document.createTextNode(newObjectTeam.Team);
         new_team.appendChild(para);
-        new_team.onclick = function(){window.alert(newObjectTeam.Cargo_Abilities)
-                                      window.alert(newObjectTeam.Hatch_Abilities)
+        new_team.onclick = function(){window.alert(newObjectTeam.Ball_Abilities)
+                                      window.alert(newObjectTeam.Color_Wheel_Abilities)
                                       window.alert(newObjectTeam.Climbing_Abilities)
                                       window.alert(newObjectTeam.Problems);
         };
@@ -614,8 +626,8 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
         var para = document.createTextNode(newObjectTeam.Team);
         window.para = document.createTextNode(newObjectTeam.Team);
         window.new_team.appendChild(para);
-        new_team.onclick = function(){window.alert(newObjectTeam.Cargo_Abilities)
-                                      window.alert(newObjectTeam.Hatch_Abilities)
+        new_team.onclick = function(){window.alert(newObjectTeam.Ball_Abilities)
+                                      window.alert(newObjectTeam.Color_Wheel_Abilities)
                                       window.alert(newObjectTeam.Climbing_Abilities)
                                       window.alert(newObjectTeam.Problems)
         };
@@ -640,7 +652,6 @@ function benShapiroCOLLECTSDataWITHFactsANDLogic(team, match) {
       location.reload();
 
   }
-
 
 
 

@@ -19,8 +19,8 @@ function createTeamObject() {
       new_team.id = "new_team";
       var para = document.createTextNode(newObjectTeam.Team);
       new_team.appendChild(para);
-      new_team.onclick = function(){window.alert(newObjectTeam.Cargo_Abilities)
-                                    window.alert(newObjectTeam.Hatch_Abilities)
+      new_team.onclick = function(){window.alert(newObjectTeam.Ball_Abilities)
+                                    window.alert(newObjectTeam.Color_Wheel_Abilities)
                                     window.alert(newObjectTeam.Climbing_Abilities)
                                     window.alert(newObjectTeam.Problems)
                                     window.alert(newObjectTeam.Defense)
